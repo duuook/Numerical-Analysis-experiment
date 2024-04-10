@@ -50,7 +50,7 @@ plt.ylabel("Accuracy")
 plt.show()
 
 # 元数据
-print(default_of_credit_card_clients.metadata)
+# print(default_of_credit_card_clients.metadata)
 
 # 变量信息
-print(default_of_credit_card_clients.variables)
+# print(default_of_credit_card_clients.variables)
