@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
+import matplotlib
 import matplotlib.pyplot as plt
 
 # fetch dataset 
@@ -49,6 +50,9 @@ y_pred_res = gnb.predict(X_test_res)
 # SMOTE之后的模型F1分数
 f1_after_smote = f1_score(y_test_res, y_pred_res, average="weighted")
 print("SMOTE之后的F1分数: ", f1_after_smote)
+
+matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 用黑体显示中文
+matplotlib.rcParams['axes.unicode_minus'] = False  # 正常显示负号
 
 # 绘制F1分数
 plt.bar(["SMOTE之前", "SMOTE之后"], [f1_before_smote, f1_after_smote])
