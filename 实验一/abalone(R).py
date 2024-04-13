@@ -1,9 +1,12 @@
+import matplotlib
 from ucimlrepo import fetch_ucirepo
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from sklearn.linear_model import Ridge
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 
 
@@ -70,6 +73,10 @@ def perform_linear_regression(X, y):
     返回值:
     无
     """
+    # Convert the categorical feature 'Sex' into numerical values
+    le = LabelEncoder()
+    X['Sex'] = le.fit_transform(X['Sex'])
+
     # 创建一个线性回归模型
     model = LinearRegression()
 
@@ -117,6 +124,9 @@ abalone = fetch_ucirepo(id=1)
 # data (as pandas dataframes)
 X = abalone.data.features
 y = abalone.data.targets
+
+matplotlib.rcParams["font.sans-serif"] = ["SimHei"]  # 用黑体显示中文
+matplotlib.rcParams["axes.unicode_minus"] = False  # 正常显示负号
 
 # Perform linear regression
 perform_linear_regression(X, y)
