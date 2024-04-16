@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
+from sklearn.ensemble import RandomForestClassifier
 
 import matplotlib.pyplot as plt
 
@@ -46,6 +47,31 @@ plt.show()
 
 # 绘制图表
 plt.bar(["Before SMOTE", "After SMOTE"], [accuracy_before, accuracy_after])
+plt.ylabel("Accuracy")
+plt.show()
+
+# 使用其他分类器，例如随机森林
+rfc = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# 在过采样数据上训练
+rfc.fit(X_res, y_res)
+y_res_pred_rfc = rfc.predict(X_test)
+accuracy_after_rfc = accuracy_score(y_test, y_res_pred_rfc)
+f1_after_rfc = f1_score(y_test, y_res_pred_rfc)
+
+# 绘制图表
+plt.bar(
+    ["Before SMOTE", "After SMOTE", "After SMOTE with RFC"],
+    [f1_before, f1_after, f1_after_rfc],
+)
+plt.ylabel("F1 Score")
+plt.show()
+
+# 绘制图表
+plt.bar(
+    ["Before SMOTE", "After SMOTE", "After SMOTE with RFC"],
+    [accuracy_before, accuracy_after, accuracy_after_rfc],
+)
 plt.ylabel("Accuracy")
 plt.show()
 
