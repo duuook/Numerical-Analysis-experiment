@@ -1,3 +1,4 @@
+import matplotlib
 from ucimlrepo import fetch_ucirepo
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LinearRegression
@@ -135,6 +136,9 @@ def compare_regression_models(alpha=1.0):
     plt.show()
 
 
+matplotlib.rcParams["font.sans-serif"] = ["SimHei"]  # 用黑体显示中文
+matplotlib.rcParams["axes.unicode_minus"] = False  # 正常显示负号
+
 # 调用函数,分别计算平方误差和平均值
 wine_quality_analysis()
-compare_regression_models()
+compare_regression_models(alpha=1.0)
