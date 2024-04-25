@@ -122,7 +122,7 @@ def compare_regression_models(alpha=1.0):
     ridge_mse = mean_squared_error(y_test, ridge_y_pred)
 
     print(f"线性回归的均方误差: {mse}")
-    print(f"岭回归的均方误差: {ridge_mse}")
+    print(f"λ为 {alpha} 的岭回归的均方误差: {ridge_mse}")
 
     # 绘图
     plt.figure(figsize=(10, 5))
@@ -130,7 +130,7 @@ def compare_regression_models(alpha=1.0):
     # 子图1：均方误差比较
     plt.subplot(1, 2, 1)
     plt.bar(["线性回归", "岭回归"], [mse, ridge_mse])
-    plt.title("均方误差比较")
+    plt.title(f"λ为{alpha}的均方误差比较")
 
     plt.tight_layout()
     plt.show()
@@ -141,4 +141,5 @@ matplotlib.rcParams["axes.unicode_minus"] = False  # 正常显示负号
 
 # 调用函数,分别计算平方误差和平均值
 wine_quality_analysis()
-compare_regression_models(alpha=1.0)
+for i in [0.5, 1.0, 1.5]:
+    compare_regression_models(alpha=i)

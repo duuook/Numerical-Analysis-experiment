@@ -22,7 +22,7 @@ def perform_ridge_regression(X, y):
     无
     """
     # 创建一个岭回归模型
-    model = Ridge()
+    model = Ridge(alpha=1)
 
     # 拟合模型
     model.fit(X, y)
